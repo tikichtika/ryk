@@ -95,13 +95,14 @@
         <p style="font-weight: 20;color: rgba(255, 255, 255, 0.724);font-family: 'DM Sans', sans-serif;">View a 3D model of a dish in AR</p>
         <!-- 3D Model Viewer -->
         <model-viewer 
-            src="https://raw.githubusercontent.com/tikichtika/3D-models/main/nabta.glb" 
-            alt="3D Dish" 
-            auto-rotate 
-            camera-controls 
-            ar 
-            ar-modes="webxr scene-viewer quick-look">
-        </model-viewer>
+    id="modelViewer"
+    src="https://raw.githubusercontent.com/tikichtika/3D-models/main/nabta.glb" 
+    alt="3D Dish" 
+    auto-rotate 
+    camera-controls 
+    ar 
+    ar-modes="scene-viewer quick-look">
+</model-viewer>
         
         <!-- Thumbnails -->
         
@@ -115,11 +116,24 @@
             <div class="separator"></div>
           </div>
         <p class="description">Pellentesque condimentum nisi in ante facilisis, at mattis est sagittis. Nullam enet neque et sapien.</p>
-        <a href="#" class="ar-button ">Show in AR</a>
+        <a href="#" class="ar-button" id="arButton">Show in AR</a>
     </div>
 </div>
         <!-- AR Button -->
         
     </div>
+
+
+
+    <script>
+        document.getElementById("arButton").addEventListener("click", function () {
+            let modelViewer = document.getElementById("modelViewer");
+            if (modelViewer.canActivateAR) {
+                modelViewer.activateAR();
+            } else {
+                alert("AR is not supported on this device!");
+            }
+        });
+    </script>
 </body>
 </html>
